@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("images/image3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================= BLUR CARD ================= */
+.card {
+    width: 350px;
+    padding: 25px;
+    border-radius: 15px;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+}
+
+/* Title */
+h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: white;
+}
+
+/* ================= FORM ================= */
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.85);
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px rgba(13,110,253,0.5);
+}
+
+/* ================= BUTTON ================= */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #0d6efd;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: white;
+    color: #0d6efd;
+}
+
+button:active {
+    background: #0d6efd;
+    color: black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h3>Login Page</h3>
+
+    <form id="loginForm">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script>
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        const lastPage = localStorage.getItem("lastPage");
+
+        if (lastPage) {
+            window.location.href = lastPage;
+        }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let username = document.querySelector("input[name='username']").value;
+        let password = document.querySelector("input[name='password']").value;
+
+        if (username === "rico" && password === "123") {
+            localStorage.setItem("isLoggedIn", "true");
+
+            window.location.href = "places.html";
+        } else {
+            alert("Invalid username or password");
+        }
+    });
+</script>
+
